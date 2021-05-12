@@ -1,4 +1,4 @@
-package library.hellolib;
+package hellolibrary;
 
 public class Library {
 

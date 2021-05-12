@@ -1,4 +1,4 @@
-package library.libList;
+package libcollections.list;
 
 public class Buch implements Comparable<Buch>{
     // Bücher müssen vergleichbar sein wegen

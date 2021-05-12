@@ -1,4 +1,4 @@
-package library.libList;
+package libcollections.list;
 
 public class Demo {
     public static void main(String[] args) {
