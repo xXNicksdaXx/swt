@@ -1,9 +1,11 @@
 package inloop;
 
 import inloop.taxi.*;
+import static inloop.leet.Leet.*;
 
 public class Inloop {
     public static void main(String[] args) {
+        //Taxi
         Human juergen = new Human("Juergen", "Staub");
 
         Human andrea = new Human("Andrea", "Bora");
@@ -23,6 +25,18 @@ public class Inloop {
         System.out.println(taxi);
         taxi.allGetOut();
         System.out.println(taxi);
+
+        //Leet
+        String[] test = new String[2];
+        test[0] = "We are elite hackers!";
+        test[1] = "Informatiker machen coole Sachen!";
+
+        String[] mod = new String[2];
+        mod = allToLeet(test);
+
+        for (String m : mod){
+            System.out.println(m);
+        }
     }
 
 }
