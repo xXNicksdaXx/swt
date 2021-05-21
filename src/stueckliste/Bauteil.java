@@ -6,6 +6,10 @@ public abstract class Bauteil {
 
     public abstract double preis();
 
+    public Bauteil getBauteil(){
+        return this;
+    }
+
     public String getId() {
         return id;
     }

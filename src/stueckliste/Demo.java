@@ -9,5 +9,6 @@ public class Demo {
         t3.addBauteil(t4);
         t3.addBauteil(t2);
         t3.addBauteil(t4);
+        t3.removeBauteil(t4);
     }
 }

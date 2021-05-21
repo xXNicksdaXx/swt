@@ -9,12 +9,12 @@ import java.util.AbstractCollection;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class MyCollection extends AbstractCollection implements Collection {
+public class MyCollection<E> extends AbstractCollection<E> implements Collection<E> {
     private class Elem {
-        private Object elem;
+        private E elem;
         private Elem next;
 
-        public Elem(Object elem, Elem next) {
+        public Elem(E elem, Elem next) {
             this.elem = elem;
             this.next = next;
         }
@@ -25,7 +25,7 @@ public class MyCollection extends AbstractCollection implements Collection {
     private int size = 0;
 
     @Override
-    public boolean add(Object o) {
+    public boolean add(E o) {
         Elem e = new Elem(o, null);
         if (end != null) {
             end.next = e;
@@ -56,8 +56,8 @@ public class MyCollection extends AbstractCollection implements Collection {
         }
 
         @Override
-        public Object next() {
-            Object o = current.elem;
+        public E next() {
+            E o = current.elem;
             current = current.next;
             return o;
         }
