@@ -28,9 +28,7 @@ public class Task extends ProjectItem{
         return cost;
     }
 
-    public void addProjectItem(ProjectItem pi){
-        projectItems.add(pi);
-    }
+    public void addProjectItem(ProjectItem pi){ projectItems.add(pi); }
 
     public void removeProjectItem(ProjectItem pi){
         projectItems.remove(pi);
