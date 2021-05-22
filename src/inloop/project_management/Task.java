@@ -28,9 +28,13 @@ public class Task extends ProjectItem{
         return cost;
     }
 
-    public void addProjectItem(ProjectItem pi){ projectItems.add(pi); }
+    public void addProjectItem(ProjectItem pi){
+        if(pi == null) throw new NullPointerException("projectitem cannot be null!");
+        projectItems.add(pi);
+    }
 
     public void removeProjectItem(ProjectItem pi){
+        if(pi == null) throw new NullPointerException("projectitem cannot be null!");
         projectItems.remove(pi);
     }
 

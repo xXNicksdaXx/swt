@@ -27,6 +27,7 @@ public class Project {
     }
 
     public void setTask(Task newTask){
+        if(newTask == null) throw new NullPointerException("newTask cannot be null!");
         this.mainTask = newTask;
     }
 
@@ -35,7 +36,7 @@ public class Project {
     }
 
     public long getTotalCost(){
-        return mainTask.getMaterialCost();
+        return mainTask.getCostEstimate();
     }
 
     public Map<LocalDate, List<Deliverable>> allDeliverables(){

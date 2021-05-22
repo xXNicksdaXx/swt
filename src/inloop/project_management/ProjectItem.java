@@ -23,8 +23,7 @@ public abstract class ProjectItem {
     }
 
     public long getCostEstimate(){
-        double d = getTimeRequired() * rate;
-        return (long) d + getMaterialCost();
+        return Math.round(getTimeRequired() * rate) + getMaterialCost();
     }
 
     public abstract double getTimeRequired();

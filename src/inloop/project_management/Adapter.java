@@ -19,6 +19,7 @@ public class Adapter implements IProject {
 
     @Override
     public void setTask(Task newTask){
+        if(newTask == null) throw new NullPointerException("newTask cannot be null!");
         mainTask = newTask;
     }
 
@@ -29,7 +30,7 @@ public class Adapter implements IProject {
 
     @Override
     public long getTotalCost(){
-        return mainTask.getMaterialCost();
+        return mainTask.getCostEstimate();
     }
 
     @Override
