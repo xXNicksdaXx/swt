@@ -1,14 +1,16 @@
-package inloop.factory;
+package inloop.part_project;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public abstract class Stock {
-    private Map<Part, Integer> parts;
-    private Set<StockObserver> observers;
+    private Map<Part, Integer> parts = new HashMap<>();
+    private Set<StockObserver> observers = new HashSet<>();
 
     public int getCount(Part part){
         if(part == null) throw new NullPointerException("part cannot be null!");
+        if (!parts.containsKey(part)){
+            throw new NoSuchElementException("part does not exist!");
+        }
         return parts.get(part);
     }
 

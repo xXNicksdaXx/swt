@@ -1,4 +1,4 @@
-package inloop.factory;
+package inloop.part_project;
 
 public class Resource extends Part{
     public Resource(String id, String name) {

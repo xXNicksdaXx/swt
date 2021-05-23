@@ -1,4 +1,4 @@
-package inloop.factory;
+package inloop.part_project;
 
 public enum PartType {
     COMPONENTS,

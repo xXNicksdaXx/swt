@@ -1,4 +1,4 @@
-package inloop.factory;
+package inloop.part_project;
 
 public class SingleComponent extends Part{
     public SingleComponent(String id, String name) {

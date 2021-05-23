@@ -1,9 +1,4 @@
-package inloop.factory;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+package inloop.part_project;
 
 public class ReceivingStock extends Stock{
     private int minStockItems;
@@ -11,11 +6,9 @@ public class ReceivingStock extends Stock{
 
     public ReceivingStock(int minStockItems, int maxStockItems){
         if(minStockItems <= 0) throw new IllegalArgumentException("minStock should be positive!");
-        if(maxStockItems <= 0 || maxStockItems < minStockItems) throw new IllegalArgumentException("maxStock should be greater than minStock and 0!");
+        if(maxStockItems <= 0 || maxStockItems <= minStockItems) throw new IllegalArgumentException("maxStock should be greater than minStock and 0!");
         this.minStockItems = minStockItems;
         this.maxStockItems = maxStockItems;
-        Map<Part, Integer> parts = new HashMap<>();
-        Set<StockObserver> observers = new HashSet<>();
     }
 
     public int getMinStockItems() {
@@ -30,7 +23,12 @@ public class ReceivingStock extends Stock{
     public boolean insert(Part part, int amount){
         if(part == null) throw new NullPointerException("part cannot be null!");
         if(amount <= 0) throw new IllegalArgumentException("amount should be positive!");
-        return super.insert(part, amount);
+        super.insert(part, amount);
+        if (getCount(part) > maxStockItems){
+            super.remove(part, amount);
+            return false;
+        }
+        return true;
     }
 
     @Override
