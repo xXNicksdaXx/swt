@@ -6,6 +6,7 @@ public class Flooring extends Material{
 
     public Flooring(String name, double price, double width) {
         super(name, price);
+        if(width <= 0) throw new IllegalArgumentException("width should be positive!");
         this.widthOfFlooring = width;
     }
 
@@ -15,6 +16,6 @@ public class Flooring extends Material{
 
     @Override
     public int getMaterialRequirements(Surface surface) {
-        return 0;
+        return (int)(surface.getArea() / getWidth() - limit + 1);
     }
 }

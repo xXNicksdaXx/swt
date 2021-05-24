@@ -12,16 +12,24 @@ public class StructuredObject extends RenovationObject {
     }
 
     public void add(RenovationObject renovationObject){
-
+        if (renovationObject == null) throw new NullPointerException("renovationObject should never be null!");
+        parts.add(renovationObject);
     }
 
     @Override
     public double getPrice() {
-        return 0;
+        double price = 0;
+        for (RenovationObject ro : parts){
+            price += getPrice();
+        }
+        return price;
     }
 
     @Override
-    public Map<String, Integer> addMaterialRequirements() {
-        return null;
+    public Map<String, Integer> addMaterialRequirements(Map<String, Integer> materials) {
+        for (RenovationObject p : parts){
+            materials = p.addMaterialRequirements(materials);
+        }
+        return materials;
     }
 }
