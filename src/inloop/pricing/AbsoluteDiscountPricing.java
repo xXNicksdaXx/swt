@@ -15,7 +15,10 @@ public class AbsoluteDiscountPricing implements ISalePricing{
     @Override
     public long getTotal(Sale sale) {
         if(sale == null) throw new NullPointerException("sale cannot be null!");
-        long price = (long)(sale.getPreDiscountTotal() / 100 - discount);
+        long prePrice = sale.getPreDiscountTotal();
+        if (prePrice <= threshold) return prePrice;
+        long price = prePrice - discount;
+        if(price <= threshold) return threshold;
         return price;
     }
 }

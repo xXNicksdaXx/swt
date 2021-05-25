@@ -12,7 +12,7 @@ public class PercentageDiscountPricing implements ISalePricing {
     @Override
     public long getTotal(Sale sale) {
         if(sale == null) throw new NullPointerException("sale cannot be null!");
-        long price = (long)(sale.getPreDiscountTotal() / 100 * percentage);
+        long price = (long)(sale.getPreDiscountTotal() / 100 * (100-percentage));
         return price;
     }
 }
