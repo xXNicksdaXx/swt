@@ -16,6 +16,7 @@ public class Flooring extends Material{
 
     @Override
     public int getMaterialRequirements(Surface surface) {
+        if(surface == null) throw new NullPointerException("surface cannot be null!");
         return (int)(surface.getArea() / getWidth() - limit + 1);
     }
 }

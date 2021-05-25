@@ -1,42 +1,39 @@
 package inloop;
 
-import inloop.taxi.*;
-import static inloop.leet.Leet.*;
+import java.util.*;
+import inloop.renovation_project.*;
 
 public class Inloop {
     public static void main(String[] args) {
-        //Taxi
-        Human juergen = new Human("Juergen", "Staub");
+        Surface s1 = new Surface(50, 30);
+        Flooring f1 = new Flooring("oak", 20, 5.3);
+        s1.setMaterial(f1);
 
-        Human andrea = new Human("Andrea", "Bora");
-        Human franzi = new Human("Franzi", "Ada");
-        Human leah = new Human("Leah", "Posh");
-        Human susi = new Human("Susi", "Fresh");
-        Human lucky = new Human("Lucky", "Fuke");
+        StructuredObject s2 = new StructuredObject();
+        Surface u1 = new Surface(100, 30.6);
+        Flooring f2 = new Flooring("spruce", 10, 3.6);
+        u1.setMaterial(f2);
+        Surface u2 = new Surface(20.7, 54.3);
+        Paint p1 = new Paint("orange", 10, 3, 22.4);
+        u2.setMaterial(p1);
+        s2.add(u1);
+        s2.add(u2);
 
-        Taxi taxi = new Taxi(juergen);
+        Surface s3 = new Surface(71, 22);
+        Paint p2 = new Paint("xanadu", 10, 2, 20);
+        s3.setMaterial(p2);
 
-        taxi.add(andrea);
-        taxi.add(franzi);
-        taxi.add(leah);
-        taxi.add(susi);
-        taxi.add(lucky);
+        StructuredObject s = new StructuredObject();
+        s.add(s1);
+        s.add(s2);
+        s.add(s3);
 
-        System.out.println(taxi);
-        taxi.allGetOut();
-        System.out.println(taxi);
-
-        //Leet
-        String[] test = new String[2];
-        test[0] = "We are elite hackers!";
-        test[1] = "Informatiker machen coole Sachen!";
-
-        String[] mod = new String[2];
-        mod = allToLeet(test);
-
-        for (String m : mod){
-            System.out.println(m);
-        }
+        Map<String, Integer> map = new HashMap<>();
+        map.put("birch", 20);
+        map.put("orange", 9);
+        map = s.addMaterialRequirements(map);
+        System.out.println(map);
+        System.out.println("Done.");
     }
 
 }

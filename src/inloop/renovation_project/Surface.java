@@ -1,6 +1,6 @@
 package inloop.renovation_project;
 
-import java.util.Map;
+import java.util.*;
 
 public class Surface extends RenovationObject{
     private double length;
@@ -14,7 +14,7 @@ public class Surface extends RenovationObject{
         this.width = width;
     }
 
-    public void setSelectedMaterial (Material material){
+    public void setMaterial (Material material){
         if (material == null) throw new NullPointerException("material should never be null!");
         this.selectedMaterial = material;
     }
@@ -33,19 +33,21 @@ public class Surface extends RenovationObject{
 
     @Override
     public double getPrice() {
-        return 0;
+        return selectedMaterial.getPriceOfASurface(this);
     }
 
     @Override
     public Map<String, Integer> addMaterialRequirements(Map<String, Integer> materials) {
+        if (materials == null) throw new NullPointerException("materials should never be null!");
+        Map<String, Integer> update = new Hashtable<>(materials);
         if (selectedMaterial == null) throw new NullPointerException("there must be a selected material to every surface!");
-        if(!materials.containsKey(selectedMaterial.getName())){
-            materials.put(selectedMaterial.getName(), selectedMaterial.getMaterialRequirements(this));
+        String key = selectedMaterial.getName();
+        if(!update.containsKey(key)){
+            update.put(key, selectedMaterial.getMaterialRequirements(this));
         }
         else {
-            String key = selectedMaterial.getName();
-            materials.replace(key, materials.get(key) + selectedMaterial.getMaterialRequirements(this));
+            update.replace(key, materials.get(key) + selectedMaterial.getMaterialRequirements(this));
         }
-        return materials;
+        return update;
     }
 }

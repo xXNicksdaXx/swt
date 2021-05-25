@@ -23,6 +23,7 @@ public abstract class Material {
     public abstract int getMaterialRequirements(Surface surface);
 
     public double getPriceOfASurface(Surface surface) {
+        if(surface == null) throw new NullPointerException("surface cannot be null!");
         return getPricePerUnit() * getMaterialRequirements(surface);
     }
 }

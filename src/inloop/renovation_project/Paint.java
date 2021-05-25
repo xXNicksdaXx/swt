@@ -23,6 +23,7 @@ public class Paint extends Material{
 
     @Override
     public int getMaterialRequirements(Surface surface) {
+        if(surface == null) throw new NullPointerException("surface cannot be null!");
         double paintLiters = surface.getArea() * getNumberOfCoats() / getSquareMetersPerLiter() - limit;
         int bucket = (int)(2 * paintLiters + 1);
         return bucket;

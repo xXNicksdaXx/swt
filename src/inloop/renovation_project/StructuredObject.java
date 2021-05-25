@@ -1,8 +1,6 @@
 package inloop.renovation_project;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class StructuredObject extends RenovationObject {
     private Set<RenovationObject> parts;
@@ -27,9 +25,11 @@ public class StructuredObject extends RenovationObject {
 
     @Override
     public Map<String, Integer> addMaterialRequirements(Map<String, Integer> materials) {
+        if (materials == null) throw new NullPointerException("materials should never be null!");
+        Map<String, Integer> update = new Hashtable<>(materials);
         for (RenovationObject p : parts){
-            materials = p.addMaterialRequirements(materials);
+            update = p.addMaterialRequirements(update);
         }
-        return materials;
+        return update;
     }
 }
