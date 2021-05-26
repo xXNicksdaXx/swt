@@ -3,13 +3,13 @@ package inloop.payroll;
 import java.util.*;
 
 public class PayrollDispositionImpl implements PayrollDisposition{
-    private Map<Employee, Double> payments;
+    private Map<Employee, Double> payments = new HashMap<>();
 
     public PayrollDispositionImpl(){
-        Map <Employee, Double> payments = new HashMap<>();
     }
 
     public double getTotal(){
+        if (getPayments() == null) throw new NullPointerException("payments is not filled!");
         Collection<Double> onlyPay = payments.values();
         double total = 0;
         for (Double pay : onlyPay){
@@ -19,7 +19,12 @@ public class PayrollDispositionImpl implements PayrollDisposition{
     }
 
     public double getAverage(){
+        if (payments.size() == 0) return 0;
         return getTotal() / payments.size();
+    }
+
+    public Map<Employee, Double> getPayments() {
+        return payments;
     }
 
     @Override
