@@ -39,7 +39,11 @@ public class Surface extends RenovationObject{
     @Override
     public Map<String, Integer> addMaterialRequirements(Map<String, Integer> materials) {
         if (materials == null) throw new NullPointerException("materials should never be null!");
-        Map<String, Integer> update = new Hashtable<>(materials);
+        Map<String, Integer> update = new HashMap<>(materials);
+        String test1 = null; Integer test2 = null;
+        if (update.containsKey(test1)) throw new NullPointerException("materials-key should never be null!");
+        if (update.containsValue(test2)) throw new NullPointerException("materials-value should never be null!");
+
         if (selectedMaterial == null) throw new NullPointerException("there must be a selected material to every surface!");
         String key = selectedMaterial.getName();
         if(!update.containsKey(key)){

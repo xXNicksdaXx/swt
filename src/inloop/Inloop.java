@@ -20,7 +20,7 @@ public class Inloop {
         s2.add(u2);
 
         Surface s3 = new Surface(71, 22);
-        Paint p2 = new Paint("xanadu", 10, 2, 20);
+        Paint p2 = new Paint("red", 10, 2, 20);
         s3.setMaterial(p2);
 
         StructuredObject s = new StructuredObject();
@@ -29,7 +29,7 @@ public class Inloop {
         s.add(s3);
 
         Map<String, Integer> map = new HashMap<>();
-        map.put("birch", 20);
+        map.put("birch", 130);
         map.put("orange", 9);
         map = s.addMaterialRequirements(map);
         System.out.println(map);
