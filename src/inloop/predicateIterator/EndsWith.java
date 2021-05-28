@@ -1,12 +1,16 @@
 package inloop.predicateIterator;
 
-public class EndsWith {
+public class EndsWith implements Predicate<String> {
     private String suffix;
 
     public EndsWith(String suffix){
+        if (suffix == null) throw new IllegalArgumentException("suffix should never be null!");
         this.suffix = suffix;
     }
-    public boolean test(String value){
 
+    @Override
+    public boolean test(String value) {
+        if (value == null) return false;
+        return value.endsWith(suffix);
     }
 }

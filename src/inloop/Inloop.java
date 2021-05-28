@@ -3,6 +3,8 @@ package inloop;
 import java.util.*;
 import inloop.renovation_project.*;
 
+import static java.lang.String.valueOf;
+
 public class Inloop {
     public static void main(String[] args) {
         Surface s1 = new Surface(50, 30);
@@ -34,6 +36,15 @@ public class Inloop {
         map = s.addMaterialRequirements(map);
         System.out.println(map);
         System.out.println("Done.");
+
+        //Test
+        String prefix = "hal";
+        String value = "HALLoolo";
+        char[] bridge = value.toCharArray();
+        String data = valueOf(bridge);
+        data = value.toLowerCase();
+        if (data.startsWith(prefix)) System.out.println("True.");
+        else System.out.println("False.");
     }
 
 }

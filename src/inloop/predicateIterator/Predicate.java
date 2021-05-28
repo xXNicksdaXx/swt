@@ -1,7 +1,5 @@
 package inloop.predicateIterator;
 
-public class Predicate<T> {
-    public boolean test(T value){
-
-    }
+public interface Predicate<T> {
+    public boolean test(T value);
 }
