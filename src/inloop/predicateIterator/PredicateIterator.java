@@ -17,20 +17,6 @@ public class PredicateIterator<T> implements Iterator<T>{
 
     @Override
     public boolean hasNext() {
-        if (nextAvailable || setNextT()) return true;
-        else return false;
-    }
-
-    @Override
-    public T next() {
-        if (!nextAvailable && !setNextT()) {
-            throw new NoSuchElementException();
-        }
-        nextAvailable = false;
-        return nextT;
-    }
-
-    private boolean setNextT() {
         while (iter.hasNext()) {
             T object = iter.next();
             if (predicate.test(object)) {
@@ -39,6 +25,16 @@ public class PredicateIterator<T> implements Iterator<T>{
                 return true;
             }
         }
+        nextAvailable = false;
         return false;
+    }
+
+    @Override
+    public T next() {
+        if (!nextAvailable && !hasNext()) {
+            throw new NoSuchElementException();
+        }
+        nextAvailable = false;
+        return nextT;
     }
 }
