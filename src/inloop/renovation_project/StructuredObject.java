@@ -18,7 +18,7 @@ public class StructuredObject extends RenovationObject {
     public double getPrice() {
         double price = 0;
         for (RenovationObject ro : parts){
-            price += getPrice();
+            price += ro.getPrice();
         }
         return price;
     }

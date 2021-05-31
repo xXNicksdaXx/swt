@@ -34,17 +34,12 @@ public class Inloop {
         map.put("birch", 130);
         map.put("orange", 9);
         map = s.addMaterialRequirements(map);
-        System.out.println(map);
-        System.out.println("Done.");
 
-        //Test
-        String prefix = "hal";
-        String value = "HALLoolo";
-        char[] bridge = value.toCharArray();
-        String data = valueOf(bridge);
-        data = value.toLowerCase();
-        if (data.startsWith(prefix)) System.out.println("True.");
-        else System.out.println("False.");
+        double price = s.getPrice();
+
+        System.out.println(map);
+        System.out.println(price);
+        System.out.println("Done.");
     }
 
 }
