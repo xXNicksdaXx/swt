@@ -23,8 +23,7 @@ public class Event implements Comparable<Event>{
     @Override
     public int compareTo(Event o) {
         if (o == null) throw new NullPointerException("category cannot be null!");
-        if(!this.getTitle().equals(o.getTitle())) return -1;
-        if(!this.getCategory().equals(o.getCategory())) return 1;
-        return 0;
+        if(this.getTitle().compareTo(o.getTitle()) == 0) return this.getCategory().compareTo(o.getCategory());
+        else return this.getTitle().compareTo(o.getTitle());
     }
 }

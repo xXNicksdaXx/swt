@@ -1,25 +1,23 @@
 package inloop.event_app;
 
+import java.io.Serial;
 import java.util.*;
 
 public class EventCatalogImpl extends TreeMap<Event, Set<Time>> implements EventCatalog {
-    private static final TreeMap<Event, Set<Time>> instance = new EventCatalogImpl();
 
-    private EventCatalogImpl() {}
+    @Serial
+    private static final long serialVersionUID = 1;
 
     @Override
     public boolean addCatalogEntry(Event e, Set<Time> tSet) {
         if (e == null) throw new NullPointerException("e cannot be null!");
         if (tSet == null) throw new NullPointerException("tSet cannot be null");
+        for(Time t : tSet){
+            if (t == null) throw new NullPointerException("t cannot be null");
+        }
 
-        if(!instance.containsKey(e)){
-            Set<Time> input = new HashSet<>();
-            for(Time t : tSet){
-                //if(t.getHour() < 0 || t.getHour() > 23) continue;
-                //if(t.getMinute() < 0 || t.getMinute() > 59) continue;
-                input.add(t);
-            }
-            instance.put(e, input);
+        if(!containsKey(e)){
+            put(e, tSet);
             return true;
         }
         else return false;
@@ -30,8 +28,8 @@ public class EventCatalogImpl extends TreeMap<Event, Set<Time>> implements Event
         if (e == null) throw new NullPointerException("e cannot be null!");
         if (t == null) throw new NullPointerException("t cannot be null");
 
-        if(!instance.containsKey(e)) return false;
-        Set<Time> input = instance.get(e);
+        if(!containsKey(e)) return false;
+        Set<Time> input = get(e);
         if(input.contains(t)) return false;
         else {
             input.add(t);
@@ -41,15 +39,14 @@ public class EventCatalogImpl extends TreeMap<Event, Set<Time>> implements Event
 
     @Override
     public Set<Event> getAllEvents() {
-        return instance.keySet();
+        return keySet();
     }
 
     @Override
     public Set<Time> getTimesOfEvent(Event e) {
         if (e == null) throw new NullPointerException("e cannot be null!");
-        if (!instance.containsKey(e)) throw new NoSuchElementException("e is not part of instance!");
-
-        return instance.get(e);
+        if (!containsKey(e)) return null;
+        return get(e);
     }
 
     @Override
@@ -60,7 +57,7 @@ public class EventCatalogImpl extends TreeMap<Event, Set<Time>> implements Event
         Set<Event> eventSet = getAllEvents();
         for (Event e : eventSet){
             if(!(e.getCategory() == category)) continue;
-            filter.put(e,instance.get(e));
+            filter.put(e,get(e));
         }
         return filter;
     }
@@ -68,9 +65,9 @@ public class EventCatalogImpl extends TreeMap<Event, Set<Time>> implements Event
     @Override
     public Set<Time> deleteEvent(Event e) {
         if (e == null) throw new NullPointerException("e cannot be null!");
-        if(instance.containsKey(e)){
+        if(containsKey(e)){
             Set<Time> tSet = getTimesOfEvent(e);
-            instance.remove(e);
+            remove(e);
             return tSet;
         }
         return null;
@@ -80,11 +77,11 @@ public class EventCatalogImpl extends TreeMap<Event, Set<Time>> implements Event
     public boolean deleteTime(Event e, Time t) {
         if (e == null) throw new NullPointerException("e cannot be null!");
         if (t == null) throw new NullPointerException("t cannot be null!");
-        if(instance.containsKey(e)){
+        if(containsKey(e)){
             Set<Time> tSet = getTimesOfEvent(e);
             if(!tSet.contains(t)) return false;
             tSet.remove(t);
-            instance.replace(e, tSet);
+            replace(e, tSet);
             return true;
         }
         return false;
