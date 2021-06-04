@@ -12,6 +12,10 @@ import java.applet.AudioClip;
  * than one audio clip playing at the same time.
  */
 public class AudioClipManager implements AudioClip {
+
+    //PATTERN: SINGLETON
+
+    //privates static final attrubute! -> nur eine Instanz global möglich
     private static final AudioClipManager myInstance = new AudioClipManager();
 
     /**
@@ -19,6 +23,7 @@ public class AudioClipManager implements AudioClip {
      */
     private AudioClip prevClip;
 
+    //privater Konstruktor
     private AudioClipManager() {}
 
     public static AudioClipManager getInstance() {

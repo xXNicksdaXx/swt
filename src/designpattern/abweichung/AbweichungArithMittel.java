@@ -1,6 +1,8 @@
 package designpattern.abweichung;
 
 class AbweichungArithMittel extends Abweichung {
+    //Concrete Class 1
+
     @Override
     protected double berechneMittelwert(double[] stichproben, int anzahl) {
         double mittelwert = 0.0;

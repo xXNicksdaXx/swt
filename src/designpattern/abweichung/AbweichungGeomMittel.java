@@ -1,6 +1,8 @@
 package designpattern.abweichung;
 
 class AbweichungGeomMittel extends Abweichung {
+    //Concrete Class 2
+
     @Override
     protected double berechneMittelwert(double[] stichproben, int anzahl) {
         double mittelwert = 1.0;

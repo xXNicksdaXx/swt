@@ -1,6 +1,9 @@
 package designpattern.abweichung;
 
 abstract class Abweichung {
+    //PATTERN: TEMPLATE METHOD
+    //in diesem Fall: "AbstractClass"
+
     public double berechneAbweichung(double[] stichproben, int anzahl) {
         double mittelwert;
         double abweichung = 0.0;
