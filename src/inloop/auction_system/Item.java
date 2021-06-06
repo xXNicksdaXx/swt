@@ -1,5 +1,6 @@
 package inloop.auction_system;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Item {
@@ -19,10 +20,27 @@ public class Item {
         this.name = name;
         this.description = description;
         this.minPrice = minPrice;
+        this.highestBid = null;
+        allBids = new LinkedList<>();
     }
 
     public void addBid(Person bidder, long price){
+        if(bidder == null) throw new NullPointerException("bidder cannot be null!");
+        if(price <= 0) throw new IllegalArgumentException("price cannot be 0 or below!");
+        if(price < minPrice) throw new IllegalArgumentException("price cannot be below minPrice!");
 
+        if (getHighestBid() == null) {
+            Bid bid = new Bid(bidder ,price);
+            highestBid = bid;
+            allBids.add(bid);
+        }
+        else {
+            if(getHighestBid().getPrice() < price){
+                Bid bid = new Bid(bidder ,price);
+                highestBid = bid;
+                allBids.add(bid);
+            }
+        }
     }
 
     public List<Bid> getAllBids() {
@@ -43,6 +61,6 @@ public class Item {
 
     @Override
     public String toString(){
-        return "";
+        return name + ": " + description + " (minimum bidding prce: " + minPrice + " EUR)";
     }
 }

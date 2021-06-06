@@ -1,8 +1,8 @@
 package inloop.auction_system;
 
 public class Bid {
-    private final long price; //read only?
     private final Person bidder;
+    private final long price; //read only?
 
     public Bid(Person bidder, long price){
         if(bidder == null) throw new NullPointerException("bidder cannot be null!");
@@ -18,6 +18,6 @@ public class Bid {
 
     @Override
     public String toString(){
-        return "";
+        return price + " EUR by " + bidder.toString();
     }
 }
