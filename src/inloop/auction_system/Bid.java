@@ -1,8 +1,8 @@
 package inloop.auction_system;
 
 public class Bid {
-    private final Person bidder;
-    private final long price; //read only?
+    private final Person bidder; //read only
+    private final long price; //read only
 
     public Bid(Person bidder, long price){
         if(bidder == null) throw new NullPointerException("bidder cannot be null!");
@@ -10,6 +10,10 @@ public class Bid {
 
         this.bidder = bidder;
         this.price = price;
+    }
+
+    public Person getBidder() {
+        return bidder;
     }
 
     public long getPrice() {

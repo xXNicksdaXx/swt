@@ -16,12 +16,12 @@ public abstract class Auction {
     }
 
     public void addBid(Item bidItem, String nameOfBidder, long price){
+        if (closed) throw new IllegalStateException("no bids allowed if closed!");
         if (bidItem == null) throw new NullPointerException("bidItem cannot be null!");
         if (!allItems.contains(bidItem)) throw new NoSuchElementException("bidItem not available!");
         if (nameOfBidder == null) throw new NullPointerException("nameOfBidder cannot be null!");
         if (nameOfBidder.equals("")) throw new IllegalArgumentException("nameOfBidder cannot be empty!");
         if (price <= 0) throw new IllegalArgumentException("price cannot be 0 or below!");
-        if (closed) throw new IllegalStateException("no bids allowed if closed!");
 
         Person actualBidder = null;
         for (Person p : bidders){
@@ -30,7 +30,7 @@ public abstract class Auction {
                 break;
             }
         }
-        if(actualBidder == null) throw new NoSuchElementException("nameOfBidder has no associated person!");
+        if(actualBidder == null) actualBidder = new Person(nameOfBidder);
 
         bidItem.addBid(actualBidder, price);
     }
@@ -60,8 +60,8 @@ public abstract class Auction {
     }
 
     public void registerItem(Item item){
-        if (item == null) throw new NullPointerException("item cannot be null!");
         if (closed) throw new IllegalStateException("registerItem is not allowed when auction is closed!");
+        if (item == null) throw new NullPointerException("item cannot be null!");
         for (Item i : allItems){
             if (i.getName().equals(item.getName())) throw new IllegalArgumentException("two items cannot have the same name");
         }

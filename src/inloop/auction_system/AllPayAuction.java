@@ -7,8 +7,10 @@ public class AllPayAuction extends Auction{
         String returnString = item.toString() + "\n";
         if (item.getHighestBid() == null)
             returnString += "No bids placed";
-        else
+        else {
+            returnString += "Highest bid: " + item.getHighestBid().toString() + "\n";
             returnString += generateAllBidsString(item);
+        }
         return returnString;
     }
 }

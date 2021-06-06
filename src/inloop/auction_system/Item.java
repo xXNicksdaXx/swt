@@ -27,7 +27,8 @@ public class Item {
     public void addBid(Person bidder, long price){
         if(bidder == null) throw new NullPointerException("bidder cannot be null!");
         if(price <= 0) throw new IllegalArgumentException("price cannot be 0 or below!");
-        if(price < minPrice) throw new IllegalArgumentException("price cannot be below minPrice!");
+
+        if(price < minPrice) return;
 
         if (getHighestBid() == null) {
             Bid bid = new Bid(bidder ,price);
@@ -61,6 +62,6 @@ public class Item {
 
     @Override
     public String toString(){
-        return name + ": " + description + " (minimum bidding prce: " + minPrice + " EUR)";
+        return name + ": " + description + " (minimum bidding price: " + minPrice + " EUR)";
     }
 }
