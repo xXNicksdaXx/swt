@@ -2,6 +2,7 @@ package inloop;
 
 import java.util.*;
 import inloop.renovation_project.*;
+import inloop.mymatrix.*;
 
 import static java.lang.String.valueOf;
 
@@ -40,6 +41,9 @@ public class Inloop {
         System.out.println(map);
         System.out.println(price);
         System.out.println("Done.");
+
+        Matrix<Integer> matrix = new MyMatrix<>();
+        matrix.iterator();
     }
 
 }

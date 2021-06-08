@@ -5,8 +5,8 @@ public class MatrixIndex{
     private int column;
 
     public MatrixIndex(int row, int column){
-        if (row < 0) throw new NullPointerException("row cannot be negative!");
-        if (column < 0) throw new NullPointerException("column cannot be negative!");
+        if (row < 0) throw new IllegalArgumentException("row cannot be negative!");
+        if (column < 0) throw new IllegalArgumentException("column cannot be negative!");
 
         this.row = row;
         this.column =column;
@@ -29,6 +29,6 @@ public class MatrixIndex{
 
     @Override
     public int hashCode(){
-        return getRow() * 10 + getColumn();
+        return getRow() * 100 + getColumn() * 10;
     }
 }
