@@ -9,6 +9,7 @@ import java.util.Map;
  * ({@link Stock}) kaufen und verkaufen sowie sich über deren Preisverfall
  * informieren lassen.
  */
+
 public class Investor implements StockChangeWatcher {
     private final String name;
     private final Mailbox mailbox;

@@ -10,6 +10,7 @@ import java.util.Set;
  * Durch einen Benachrichtigungsmechanismus ({@link StockChangeWatcher}) können
  * interessierte Parteien über Preisverfälle informiert werden.
  */
+
 public class Stock {
     private final String isin;
     private final String name;

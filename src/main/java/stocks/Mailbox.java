@@ -7,6 +7,7 @@ import java.util.List;
  * Einfacher elektronischer Briefkasten, der das Senden und Lesen von
  * Nachrichten simuliert.
  */
+
 public class Mailbox {
     private List<String> messages = new ArrayList<>();
 
