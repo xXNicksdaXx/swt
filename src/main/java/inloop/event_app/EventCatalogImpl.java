@@ -1,11 +1,8 @@
 package inloop.event_app;
 
-import java.io.Serial;
 import java.util.*;
 
 public class EventCatalogImpl extends TreeMap<Event, Set<Time>> implements EventCatalog {
-
-    @Serial
     private static final long serialVersionUID = 1;
 
     @Override
