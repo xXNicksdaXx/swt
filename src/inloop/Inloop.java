@@ -43,7 +43,8 @@ public class Inloop {
         System.out.println("Done.");
 
         Matrix<Integer> matrix = new MyMatrix<>();
-        matrix.iterator();
+        matrix.put(1,0,3);
+
     }
 
 }
