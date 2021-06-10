@@ -29,9 +29,10 @@ public class Stock {
     }
 
     public void setPrice(double newPrice) {
-     boolean notify = newPrice < price;
-     this.price = newPrice;
-     if (notify) notifyWatchers();
+        if (newPrice < 0) throw new IllegalArgumentException("newPrice cannot be negative!");
+        boolean notify = newPrice < price;
+        this.price = newPrice;
+        if (notify) notifyWatchers();
     }
 
     private void notifyWatchers() {
