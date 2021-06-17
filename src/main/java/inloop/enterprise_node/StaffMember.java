@@ -8,8 +8,13 @@ public class StaffMember implements EnterpriseNode, Comparable<StaffMember>{
     private SortedSet<StaffMember> directSubordinates;
 
     public StaffMember(String name, String job){
+        if(name == null) throw new NullPointerException("name cannot be null!");
+        if(name.equals("")) throw new IllegalArgumentException("name cannot be empty!");
         this.name = name;
+        if(job == null) throw new NullPointerException("job cannot be null!");
+        if(job.equals("")) throw new IllegalArgumentException("job cannot be empty!");
         this.job = job;
+        directSubordinates = new TreeSet<>();
     }
 
     @Override

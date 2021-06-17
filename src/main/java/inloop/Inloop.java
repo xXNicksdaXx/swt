@@ -2,6 +2,7 @@ package inloop;
 
 import java.util.*;
 import inloop.renovation_project.*;
+import inloop.enterprise_node.*;
 
 public class Inloop {
     public static void main(String[] args) {
@@ -37,7 +38,30 @@ public class Inloop {
 
         System.out.println(map);
         System.out.println(price);
-        System.out.println("Done.");
+        System.out.println("Done 1.");
+
+        StaffMember nick = new StaffMember("Nick", "Informatik");
+
+        Holding h1 = new Holding("1");
+        Holding h2 = new Holding("2");
+        Company c1 = new Company("1.1");
+        Company c2 = new Company("1.2");
+        Company c3 = new Company("2.1");
+        Division d1 = new Division("1.2.1");
+        Division d2 = new Division("2.1.1");
+        Team t1 = new Team("1.2.1.1", nick);
+
+        System.out.println(h1.add(c1));
+        System.out.println(h1.add(c1));
+        h1.add(c2);
+        h2.add(c3);
+        c2.add(d1);
+
+        Set<AbstractEnterpriseUnit> set = h1.getChildNodes();
+        System.out.println(set);
+
+        System.out.println("Done 2.");
+
     }
 
 }

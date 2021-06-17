@@ -1,5 +1,6 @@
 package inloop.enterprise_node;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public abstract class AbstractUnit extends AbstractEnterpriseUnit{
@@ -7,28 +8,25 @@ public abstract class AbstractUnit extends AbstractEnterpriseUnit{
 
     public AbstractUnit(String name) {
         super(name);
+        childNodes = new HashSet<>();
     }
 
     public boolean add(AbstractEnterpriseUnit childNode){
         if (childNode == null) throw new NullPointerException("childNode cannot be null!");
-        if(childNodes.contains(childNode)) return false;
 
         if(this instanceof Holding){
             if (!(childNode instanceof Company)) throw new IllegalArgumentException("holding must consist of companies!");
-            childNodes.add(childNode);
-            return true;
+            return childNodes.add(childNode);
         }
 
         else if(this instanceof Company){
             if (!(childNode instanceof Division)) throw new IllegalArgumentException("company must consist of divisions!");
-            childNodes.add(childNode);
-            return true;
+            return childNodes.add(childNode);
         }
 
         else if(this instanceof Division){
             if (!(childNode instanceof Team)) throw new IllegalArgumentException("division must consist of teams!");
-            childNodes.add(childNode);
-            return true;
+            return childNodes.add(childNode);
         }
         return false;
     }
@@ -37,10 +35,26 @@ public abstract class AbstractUnit extends AbstractEnterpriseUnit{
         if(childNode == null) throw new NullPointerException("childNode cannot be nulL!");
 
         if(!(childNodes.contains(childNode))) return false;
-        else {
+
+        if(this instanceof Holding){
+            if (!(childNode instanceof Company)) throw new IllegalArgumentException("holding must consist of companies!");
             childNodes.remove(childNode);
             return true;
         }
+
+        if(this instanceof Company){
+            if (!(childNode instanceof Division)) throw new IllegalArgumentException("company must consist of divisions!");
+            childNodes.remove(childNode);
+            return true;
+        }
+
+        if(this instanceof Division){
+            if (!(childNode instanceof Team)) throw new IllegalArgumentException("division must consist of teams!");
+            childNodes.remove(childNode);
+            return true;
+        }
+
+        return true;
     }
 
     public Set<AbstractEnterpriseUnit> getChildNodes() {

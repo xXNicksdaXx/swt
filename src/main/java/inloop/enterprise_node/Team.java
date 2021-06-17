@@ -16,6 +16,8 @@ public class Team extends AbstractEnterpriseUnit{
     }
 
     public SortedSet<StaffMember> getTeamMembers(){
-        return teamLeader.getDirectSubordinates();
+        SortedSet<StaffMember> allMembers = teamLeader.getDirectSubordinates();
+        allMembers.add(getTeamLeader());
+        return allMembers;
     }
 }
