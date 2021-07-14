@@ -1,6 +1,6 @@
 package inloop.vehicle_queue;
 
-import java.util.Queue;
+import java.util.Deque;
 
 public class VehicleQueue implements ClockObserver {
     private double entryDelay;
@@ -8,7 +8,7 @@ public class VehicleQueue implements ClockObserver {
     private int trafficLightRate;
     private boolean greenLight = false;
     private VehicleGenerator generator;
-    private Queue<Vehicle> queue;
+    private Deque<Vehicle> queue;
 
     public VehicleQueue(double entryDelay, double exitDelay, int trafficLightRate, VehicleGenerator generator){
         if(entryDelay <= 0) throw new IllegalArgumentException("entryDelay should be positive!");
@@ -23,15 +23,16 @@ public class VehicleQueue implements ClockObserver {
     }
 
     public void enter(){
-
+        Vehicle vehicle = generator.createVehicle();
+        queue.push(vehicle);
     }
 
     public void leave(){
-
+        queue.pop();
     }
 
     public double getLength(){
-        return 0.0;
+        return queue.size();
     }
 
     public int getSize(){

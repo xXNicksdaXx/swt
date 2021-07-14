@@ -6,10 +6,10 @@ public class VehicleGenerator {
     private Random randomGenerator;
 
     public VehicleGenerator(){
-
     }
 
     public Vehicle createVehicle(){
-        return null;
+        Vehicle vehicle = null;
+        return vehicle;
     }
 }

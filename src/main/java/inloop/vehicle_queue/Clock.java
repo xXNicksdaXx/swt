@@ -31,9 +31,13 @@ public class Clock {
     public void run(){
         while(currentTime < endOfTime){
             currentTime++;
+            tick(currentTime);
         }
     }
 
     private void tick(int currentTime){
+        for(ClockObserver observer : observers){
+            observer.tick(currentTime);
+        }
     }
 }
