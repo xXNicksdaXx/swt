@@ -16,6 +16,7 @@ public class JAttachment extends JContent{
     }
 
     public void setFile(File file) {
+        if(file == null) throw new NullPointerException("file cannot be null!");
         this.file = file;
     }
 

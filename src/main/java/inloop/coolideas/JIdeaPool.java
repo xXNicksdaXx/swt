@@ -11,12 +11,21 @@ public class JIdeaPool {
 
     public void add(JTopic topic){
         if(topic == null) throw new NullPointerException("topic cannot be null!");
-        pool.put(topic, new HashSet<JIdea>());
+        if(!pool.containsKey(topic)) pool.put(topic, new HashSet<>());
     }
 
     public void add(JIdea idea, JTopic topic){
         if(idea == null) throw new NullPointerException("idea cannot be null!");
         if(topic == null) throw new NullPointerException("topic cannot be null!");
+
+        Collection<Set<JIdea>> allSets = pool.values();
+        Set<JIdea> allIdeas = new HashSet<>();
+        for(Set<JIdea> set : allSets){
+            allIdeas.addAll(set);
+        }
+        for(JIdea i : allIdeas){
+            if(i.getTitle().equals(idea.getTitle()) && (i != idea)) return;
+        }
 
         if(pool.containsKey(topic)){
             Set<JIdea> set = pool.get(topic);
@@ -52,7 +61,6 @@ public class JIdeaPool {
                 found = true;
                 pool.replace(topic, set);
             }
-            else continue;
         }
         return found;
     }

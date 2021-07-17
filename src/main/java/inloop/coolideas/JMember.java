@@ -13,19 +13,23 @@ public class JMember implements ContentObserver{
     public void subscribe(JTopic topic){
         if (topic == null) throw new NullPointerException("topic cannot be null!");
         topics.add(topic);
+        topic.addObserver(this);
     }
 
     public void unsubscribe(JTopic topic){
         if (topic == null) throw new NullPointerException("topic cannot be null!");
+        topic.removeObserver(this);
         topics.remove(topic);
     }
 
     @Override
     public void update(JContent content) {
-        System.out.println("The topic <id> has been updated!");
+        for (JTopic topic : topics){
+            if(topic == content) System.out.println("The topic "+ topic.getId() +" has been updated!"); ;
+        }
     }
 
-    public Set<JTopic> getTopics() {
+    public Set<JTopic> getSubscribedTopics() {
         return topics;
     }
 }

@@ -72,7 +72,7 @@ public class JIdea extends JContent{
 
     private abstract class JState{
         private JValuation valuation;
-        private String currentDiscussion;
+        private String currentDiscussion = "";
 
         public void discuss(String text){
             throw new IllegalStateException("discuss is not implemented by current state!");
@@ -130,11 +130,16 @@ public class JIdea extends JContent{
     private class OpenDraft extends JState{
         @Override
         public void discuss(String text) {
-            state.setCurrentDiscussion(text);
+            if(text == null) throw new NullPointerException("text cannot be null!");
+            if(text.equals("")) throw new IllegalArgumentException("text cannot be empty!");
+            String discussion = state.getCurrentDiscussion();
+            discussion += text+"\n";
+            state.setCurrentDiscussion(discussion);
         }
 
         @Override
         public void evaluate(JValuation valuation) {
+            if(valuation == null) throw new NullPointerException("valuation cannot be null!");
             state.setValuation(valuation);
         }
 
